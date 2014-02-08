@@ -3,7 +3,7 @@ from nose.plugins import Plugin
 from utils import lazy_property
 from math import sin, pi
 
-class Nosepride(Plugin):
+class Plain(Plugin):
 
     name = 'nosepride'
     enabled = False
@@ -21,7 +21,7 @@ class Nosepride(Plugin):
         return cycle(range(31, 37))
 
 
-class Fabulous(Nosepride):
+class Fabulous(Plain):
 
     def generate_colors(self):
         return map(self.calculate_color, range(0, 6 * 7 - 1))
