@@ -26,6 +26,9 @@ class Fabulous(Nosepride):
     def generate_colors(self):
         return map(self.calculate_color, range(0, 6 * 7 - 1))
 
+
+    # colors calculation stolen from Minitest's Pride Plugin
+    # https://github.com/seattlerb/minitest
     def calculate_color(self, n):
         n *= 1.0 / 6
         r = int(3 * sin(n) + 3)
