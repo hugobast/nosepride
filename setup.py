@@ -7,7 +7,7 @@ setup(
     name="nosepride",
     author="Hugo Bastien",
     author_email="hugobast@gmail.com",
-    url="",
+    url="https://github.com/hugobast/nosepride.git",
     version="0.0.1",
     packages=["nosepride"],
     install_requires=[
