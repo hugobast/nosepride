@@ -14,6 +14,11 @@ class Plain(PluginBase):
             self.escseq, self.colors.next(), string, self.endseq
         )
 
+    def failure(self, string):
+        return "{0}31m{1}{2}".format(
+            self.escseq, string, self.endseq
+        )
+
     @lazy_property
     def colors(self):
         return cycle(range(31, 37))
