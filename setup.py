@@ -1,4 +1,7 @@
-from distutils.core import setup
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
 
 setup(
     name="nosepride",
@@ -7,7 +10,11 @@ setup(
     url="",
     version="0.0.1",
     packages=["nosepride"],
-    install_requires=["nose"],
+    install_requires=[
+        "nose",
+        "setuptools"
+    ],
+    test_suite='tests',
     license="MIT License",
     long_description=open("README.txt").read(),
     entry_points = {
