@@ -1,13 +1,15 @@
+from re import findall
+from os import environ
+from math import sin, pi
 from itertools import cycle
 from utils import lazy_property
-from math import sin, pi
 from plugin_base import PluginBase
 
 
 class Plain(PluginBase):
 
-    escseq = "\e["
-    endseq = "\e[0m"
+    escseq = "\x1b["
+    endseq = "\x1b[0m"
 
     def pride(self, string):
         return "{0}{1}m{2}{3}".format(
@@ -38,12 +40,16 @@ class Fabulous(Plain):
         b = int(3 * sin(n + 4 * pi/3) + 3)
         return 36 * r + 6 * g + b + 16
 
+    def pride(self, string):
+        return "{0}38;5;{1}m{2}{3}".format(
+            self.escseq, self.colors.next(), string, self.endseq
+        )
+
     @lazy_property
     def colors(self):
         return cycle(self.generate_colors())
 
 
-if re.findall(r'^xterm|-256color$', os.environ.get("TERM")):
+Nosepride = Plain
+if findall(r'^xterm|-256color$', environ.get("TERM")):
     Nosepride = Fabulous
-else:
-    Nosepride = Plain
