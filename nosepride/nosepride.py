@@ -7,9 +7,12 @@ class Nosepride(Plugin):
     name = 'nosepride'
     enabled = False
 
+    escseq = "\e["
+    endseq = "\e[0m"
+
     def pride(self, string):
-        return "\e[{0}m{1}\e[0m".format(
-            self.colors.next(), string
+        return "{0}{1}m{2}{3}".format(
+            self.escseq, self.colors.next(), string, self.endseq
         )
 
     @lazy_property
