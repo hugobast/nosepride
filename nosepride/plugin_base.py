@@ -21,10 +21,17 @@ class PluginBase(Plugin):
         if options.fabulous:
             self.enabled = True
 
-    def addFailure(self, test, err): pass
-    def addError(self, test, err): pass
-    def addSuccess(self, test): pass
-    def addSkip(self, test=None, err=None): pass
+    def addFailure(self, test, err):
+        self.out(self.failure("f"))
+
+    def addError(self, test, err):
+        self.out(self.failure("e"))
+
+    def addSuccess(self, test):
+        self.out(self.pride("."))
+
+    def addSkip(self, test=None, err=None):
+        self.out(self.pride("*"))
 
     def setOutputStream(self, stream):
         self.stream = stream
