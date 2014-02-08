@@ -1,12 +1,10 @@
 from itertools import cycle
-from nose.plugins import Plugin
 from utils import lazy_property
 from math import sin, pi
+from plugin_base import PluginBase
 
-class Plain(Plugin):
 
-    name = 'nosepride'
-    enabled = False
+class Plain(PluginBase):
 
     escseq = "\e["
     endseq = "\e[0m"
@@ -25,7 +23,6 @@ class Fabulous(Plain):
 
     def generate_colors(self):
         return map(self.calculate_color, range(0, 6 * 7 - 1))
-
 
     # colors calculation stolen from Minitest's Pride Plugin
     # https://github.com/seattlerb/minitest
