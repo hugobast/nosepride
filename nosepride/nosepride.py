@@ -41,3 +41,9 @@ class Fabulous(Plain):
     @lazy_property
     def colors(self):
         return cycle(self.generate_colors())
+
+
+if re.findall(r'^xterm|-256color$', os.environ.get("TERM")):
+    Nosepride = Fabulous
+else:
+    Nosepride = Plain
