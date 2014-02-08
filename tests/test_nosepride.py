@@ -1,5 +1,6 @@
-from unittest import TestCase, SkipTest
-from nosepride.nosepride import Plain, Fabulous
+from unittest import TestCase
+from nosepride.formatters.plain import Plain
+from nosepride.formatters.fabulous import Fabulous
 
 
 class TestNosepride(TestCase):
@@ -22,13 +23,3 @@ class TestNosepride(TestCase):
         self.assertEquals("\x1b[38;5;154m.\x1b[0m", color.pride("."))
         self.assertEquals("\x1b[38;5;154m.\x1b[0m", color.pride("."))
         self.assertEquals("\x1b[38;5;148m.\x1b[0m", color.pride("."))
-
-    def test_can_render_simple_failure(self):
-        self.assertFalse(Plain())
-
-    def test_can_render_simple_error(self):
-        import bad_import
-        self.assertTrue(Plain())
-
-    def test_can_render_simple_skip(self):
-        raise SkipTest("pending")

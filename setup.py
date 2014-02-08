@@ -9,7 +9,12 @@ setup(
     author_email="hugobast@gmail.com",
     url="https://github.com/hugobast/nosepride.git",
     version="0.0.1",
-    packages=["nosepride", "utils"],
+    packages=[
+        "nosepride",
+        "nosepride/formatters",
+        "utils"
+    ],
+    tests_require=["mock"],
     install_requires=[
         "nose",
         "setuptools"
