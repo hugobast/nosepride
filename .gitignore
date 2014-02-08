@@ -1,4 +1,5 @@
 .idea
 nosepride.egg-info
 dist
+build
 *.pyc
