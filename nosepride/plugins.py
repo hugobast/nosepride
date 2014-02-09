@@ -14,11 +14,11 @@ class PluginBase(PluginShim):
 
     def options(self, parser, env):
         parser.add_option(
-            "--fabulous",
-            action="store_true",
-            default=False,
-            dest="fabulous",
-            help="enable colour output"
+            "--fabulous-off",
+            action="store_false",
+            default=True,
+            dest="disabled",
+            help="disable colour output"
         )
 
     def failure(self, string):
@@ -39,11 +39,11 @@ class PluginBase(PluginShim):
 
     def after_test(self, test):
         if self.running_test:
-            self.addSkip()
+            self.add_skip()
 
     def configure(self, options, conf):
-        if options.fabulous:
-            self.enabled = True
+        if not options.disabled:
+            self.enabled = False
 
     @staticmethod
     def prepare_test_result(result):
