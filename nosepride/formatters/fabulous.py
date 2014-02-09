@@ -6,9 +6,6 @@ from nosepride.formatters.plain import Plain
 
 class Fabulous(Plain):
 
-    def generate_colors(self):
-        return map(self.calculate_color, range(0, 6 * 7 - 1))
-
     # colors calculation stolen from Minitest's Pride Plugin
     # https://github.com/seattlerb/minitest
     def calculate_color(self, n):
@@ -23,6 +20,5 @@ class Fabulous(Plain):
             self.escseq, self.colors.next(), string, self.endseq
         )
 
-    @lazy_property
-    def colors(self):
-        return cycle(self.generate_colors())
+    def generate_colors(self):
+        return map(self.calculate_color, range(0, 6 * 7 - 1))

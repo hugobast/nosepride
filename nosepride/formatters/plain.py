@@ -18,6 +18,9 @@ class Plain(PluginBase):
             self.escseq, string, self.endseq
         )
 
+    def generate_colors(self):
+        return range(31, 37)
+
     @lazy_property
     def colors(self):
-        return cycle(range(31, 37))
+        return cycle(self.generate_colors())
