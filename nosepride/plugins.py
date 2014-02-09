@@ -1,5 +1,6 @@
 from utils import PluginShim
 from streams import NullStream
+from reports import FailureReport
 
 
 # Plugin interface methods
@@ -9,8 +10,10 @@ class PluginBase(PluginShim):
     score = 199
     name = 'nosepride'
     stream = None
+    result = None
     enabled = True
     running_test = False
+    failure_report = None
 
     def options(self, parser, env):
         parser.add_option(
@@ -31,6 +34,17 @@ class PluginBase(PluginShim):
             "Please provide implementation for pride"
         )
 
+    def stack(self, string):
+        raise NotImplementedError(
+            "Please provide implementation for pride"
+        )
+
+    def formatError(self, test, err):
+        return err[0], self.failure(err[1]), err[2]
+
+    def formatFailure(self, test, err):
+        return err[0], self.failure(err[1]), err[2]
+
     def begin(self):
         self.running_test = False
 
@@ -45,9 +59,9 @@ class PluginBase(PluginShim):
         if not options.disabled:
             self.enabled = False
 
-    @staticmethod
-    def prepare_test_result(result):
+    def prepare_test_result(self, result):
         result.stream = NullStream(result.stream)
+        self.failure_report = FailureReport(self, result)
 
     def set_output_stream(self, stream):
         self.stream = stream

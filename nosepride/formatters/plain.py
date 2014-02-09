@@ -18,6 +18,11 @@ class Plain(PluginBase):
             self.escseq, string, self.endseq
         )
 
+    def stack(self, string):
+        return "{0}36m{1}{2}".format(
+            self.escseq, string, self.endseq
+        )
+
     def generate_colors(self):
         return range(31, 37)
 
