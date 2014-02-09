@@ -3,6 +3,7 @@ from itertools import cycle
 from utils import lazy_property
 from nosepride.formatters.plain import Plain
 
+
 class Fabulous(Plain):
 
     def generate_colors(self):
