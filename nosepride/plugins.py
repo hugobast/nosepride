@@ -67,10 +67,10 @@ class PluginBase(PluginShim):
         self.stream = stream
 
     def add_failure(self, test, err):
-        self.output(self.failure("f"))
+        self.output(self.pride("!"))
 
     def add_error(self, test, err):
-        self.output(self.failure("e"))
+        self.output(self.pride("x"))
 
     def add_success(self, test):
         self.output(self.pride("."))
