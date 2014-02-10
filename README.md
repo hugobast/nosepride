@@ -1,10 +1,22 @@
-Nosepride
-=========
+### Nosepride
 
-Pretty much a copy of minitest/pride
+Pretty much a copy of minitest/pride.
 
-license
-=======
+### Screenshot
+
+![Example console output](https://s3.amazonaws.com/hbastien/nosepride.png)
+
+### Installation
+
+    pip install nosepride
+
+### Usage
+
+Nothing! Nosepride is on by default! But if you mush turn it off...
+
+    nosetests --fabulous-off
+
+### License
 
 The MIT License (MIT)
 
