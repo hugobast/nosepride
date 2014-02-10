@@ -12,7 +12,7 @@ setup(
     packages=[
         "nosepride",
         "nosepride/formatters",
-        "utils"
+        "nosepride/utils"
     ],
     tests_require=["mock"],
     install_requires=[

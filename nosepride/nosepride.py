@@ -1,7 +1,7 @@
 from re import findall
 from os import environ
-from formatters.fabulous import Fabulous
-from formatters.plain import Plain
+from .formatters.fabulous import Fabulous
+from .formatters.plain import Plain
 
 
 Nosepride = Plain

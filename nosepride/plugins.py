@@ -1,6 +1,6 @@
-from utils import PluginShim
-from streams import NullStream
-from reports import FailureReport
+from .utils.shims import PluginShim
+from .streams import NullStream
+from .reports import FailureReport
 
 
 # Plugin interface methods

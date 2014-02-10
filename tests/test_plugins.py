@@ -1,7 +1,9 @@
 from unittest import TestCase
+
 from mock import Mock
+
 from nosepride.plugins import PluginBase
-from utils import lazy_property
+from nosepride.utils.lazy import lazy_property
 
 
 class TestPluginBase(TestCase):
