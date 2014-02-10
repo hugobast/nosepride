@@ -22,7 +22,7 @@ setup(
     test_suite='tests',
     license="MIT License",
     description="Fabulous colors for nosetests",
-    long_description=open("README.txt").read(),
+    long_description=open("README.md").read(),
     entry_points = {
         'nose.plugins.0.10': [
             'nosepride = nosepride:Nosepride'
