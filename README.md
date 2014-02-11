@@ -1,4 +1,5 @@
 ### Nosepride
+[![Build Status](https://travis-ci.org/hugobast/nosepride.png?branch=master)](https://travis-ci.org/hugobast/nosepride)
 
 Pretty much a copy of minitest/pride.
 
