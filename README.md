@@ -17,6 +17,10 @@ Nothing! Nosepride is on by default! But if you mush turn it off...
 
     nosetests --fabulous-off
 
+### Changelog
+
+Version 0.0.4: Better failure formatting
+
 ### License
 
 The MIT License (MIT)
