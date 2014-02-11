@@ -8,7 +8,7 @@ setup(
     author="Hugo Bastien",
     author_email="hugobast@gmail.com",
     url="https://github.com/hugobast/nosepride.git",
-    version="0.0.3",
+    version="0.0.4",
     packages=[
         "nosepride",
         "nosepride/formatters",
