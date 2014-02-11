@@ -28,7 +28,7 @@ class Traceback(object):
         if matches:
             path, no, method = matches.groups()
             self.formatted_lines.append(
-                "{0}:{1}:in {2}".format(self.intersect(path), no, method
+                "# {0}:{1}:in {2}".format(self.intersect(path), no, method
             ))
 
     def report(self):

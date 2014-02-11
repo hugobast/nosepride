@@ -45,7 +45,7 @@ class TestTraceback(TestCase):
         traceback.format_line()
 
         self.assertEqual(
-            'tests/test_nosepride.py:12:in '
+            '# tests/test_nosepride.py:12:in '
             'test_wraps_string_in_terminal_escaped_color_syntax',
             traceback.formatted_lines[0]
         )
@@ -54,16 +54,16 @@ class TestTraceback(TestCase):
     def test_return_a_full_report(self, getcwd):
         getcwd.return_value = "/home/username/project/nosepride"
         expected = [
-            'tests/fields/fields.py:546:in test_datetime_validation',
-            '/System/Library/Frameworks/Python.framework/Versions/2'
+            '# tests/fields/fields.py:546:in test_datetime_validation',
+            '# /System/Library/Frameworks/Python.framework/Versions/2'
             '.7/lib/python2.7/unittest/case.py:475:in assertRaises',
-            'base/document.py:307:in validate',
-            'base/fields.py:174:in _validate',
-            'fields.py:373:in validate',
-            'fields.py:393:in to_mongo',
-            'python_dateutil-2.2-py2.7'
+            '# base/document.py:307:in validate',
+            '# base/fields.py:174:in _validate',
+            '# fields.py:373:in validate',
+            '# fields.py:393:in to_mongo',
+            '# python_dateutil-2.2-py2.7'
             '.egg/dateutil/parser.py:748:in parse',
-            'python_dateutil-2.2-py2.7.egg/dateutil/parser.py:310:in parse'
+            '# python_dateutil-2.2-py2.7.egg/dateutil/parser.py:310:in parse'
         ]
 
         traceback = Traceback(FULL_TRACEBACK)
