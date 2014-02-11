@@ -1,3 +1,5 @@
+from .utils.traceback import Traceback
+
 
 class FailureReport(object):
 
@@ -18,10 +20,18 @@ class FailureReport(object):
         [self.formatter.output("\n") for _ in range(count)]
 
     def print_traceback(self, error):
-        for line in error.splitlines():
-            self.formatter.output("    {0}\n".format(
+        traceback = Traceback(error).report()
+
+        for line in self.formatter.get_next_failed_expectation().splitlines():
+            self.formatter.output("     {0}\n".format(
+                self.formatter.failure(line)
+            ))
+
+        for line in traceback:
+            self.formatter.output("     {0}\n".format(
                 self.formatter.stack(line)
             ))
+
 
     def print_errors(self):
         self.print_blank_lines(2)

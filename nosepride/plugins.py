@@ -14,6 +14,8 @@ class PluginBase(PluginShim):
     enabled = True
     running_test = False
     failure_report = None
+    failed_expectations = []
+    expectation_iterator = None
 
     def options(self, parser, env):
         parser.add_option(
@@ -39,11 +41,21 @@ class PluginBase(PluginShim):
             "Please provide implementation for pride"
         )
 
+    def get_next_failed_expectation(self):
+        if not self.expectation_iterator:
+            self.expectation_iterator = iter(self.failed_expectations)
+        try:
+            return self.expectation_iterator.next()
+        except StopIteration:
+            return None
+
+
     def formatError(self, test, err):
-        return err[0], self.failure(err[1]), err[2]
+        self.failed_expectations.append(unicode(err[1]))
+        return err
 
     def formatFailure(self, test, err):
-        return err[0], self.failure(err[1]), err[2]
+        self.formatError(test, err)
 
     def begin(self):
         self.running_test = False
