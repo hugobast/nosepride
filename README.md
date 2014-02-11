@@ -5,7 +5,7 @@ Pretty much a copy of minitest/pride.
 
 ### Screenshot
 
-![Example console output](https://s3.amazonaws.com/hbastien/nosepride.png)
+![Example console output](https://s3.amazonaws.com/hbastien/nosepride2.png)
 
 ### Installation
 
