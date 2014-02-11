@@ -1,7 +1,5 @@
 from math import sin, pi
-from itertools import cycle
-from utils import lazy_property
-from nosepride.formatters.plain import Plain
+from .plain import Plain
 
 
 class Fabulous(Plain):

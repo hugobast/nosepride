@@ -1,6 +1,6 @@
 from itertools import cycle
-from utils import lazy_property
-from nosepride.plugins import PluginBase
+from ..utils.lazy import lazy_property
+from ..plugins import PluginBase
 
 
 class Plain(PluginBase):
