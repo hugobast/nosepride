@@ -35,7 +35,6 @@ class Traceback(object):
         try:
             while True:
                 self.format_line()
-                self.skip_a_line()
         except StopIteration:
             return self.formatted_lines
 
