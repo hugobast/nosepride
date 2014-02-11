@@ -6,9 +6,10 @@ from nosepride.formatters.fabulous import Fabulous
 class TestNosepride(TestCase):
 
     def test_nothing(self):
-        self.assertTrue(Plain())
+        self.assertFalse(Plain())
 
     def test_wraps_string_in_terminal_escaped_color_syntax(self):
+        raise Exception("Exception is raised")
         color = Plain()
         self.assertEquals("\x1b[31m.\x1b[0m", color.pride("."))
 

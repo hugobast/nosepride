@@ -8,19 +8,35 @@ class FailureReport(object):
         self.formatter = formatter
         self.result = result
 
+    def print_error_header(self, index, test):
+        self.formatter.output("  {0}) {1}".format(
+            unicode(index + 1),
+            unicode(test)
+        ))
+
+    def print_blank_lines(self, count):
+        [self.formatter.output("\n") for _ in range(count)]
+
+    def print_traceback(self, error):
+        for line in error.splitlines():
+            self.formatter.output("    {0}\n".format(
+                self.formatter.stack(line)
+            ))
+
     def print_errors(self):
-        self.formatter.output("\n\n")
+        self.print_blank_lines(2)
         errors = self.result.errors + self.result.failures
 
         if not errors:
             return None
 
-        self.formatter.output("Failures:\n\n")
+        self.formatter.output("Failures:")
+        self.print_blank_lines(2)
         for index, (test, error) in enumerate(errors):
-            self.formatter.output(unicode(index+1) + ") " + self.formatter.failure(unicode(test)))
-            self.formatter.output("\n\n")
-            self.formatter.output(self.formatter.stack(error))
-            self.formatter.output("\n")
+            self.print_error_header(index, test)
+            self.print_blank_lines(2)
+            self.print_traceback(error)
+            self.print_blank_lines(1)
 
     def print_summary(self, start, stop):
         finale = "Ran %s fabulous tests in %.4f seconds" % (
@@ -33,4 +49,4 @@ class FailureReport(object):
             colored_finale.append(self.formatter.pride(char))
 
         self.formatter.output("".join(colored_finale))
-        self.formatter.output("\n\n")
+        self.print_blank_lines(2)
