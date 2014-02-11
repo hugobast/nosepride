@@ -27,9 +27,11 @@ class Traceback(object):
 
         if matches:
             path, no, method = matches.groups()
-            self.formatted_lines.append(
-                "# {0}:{1}:in {2}".format(self.intersect(path), no, method
-            ))
+            project_path = self.intersect(path)
+            if not project_path is path:
+                self.formatted_lines.append(
+                    "# {0}:{1}:in {2}".format(project_path, no, method
+                ))
 
     def report(self):
         try:
