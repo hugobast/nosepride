@@ -18,6 +18,10 @@ FULL_TRACEBACK = """Traceback (most recent call last):
     self.assertRaises(ValidationError, log.validate)
   File "/home/username/project/nosepride/base/document.py", line 307, in validate
     field._validate(value)
+  File "/home/username/.virtualenv/package/derivatives/something.py", line 22, in do_stuff
+    super().do_stuff(value)
+  File "/home/username/.virtualenv/package/base/something.py", line 32, in do_stuff
+    self.do_stuff(value)
   File "/home/username/project/nosepride/base/fields.py", line 174, in _validate
     self.validate(value, **kwargs)
   File "/home/username/project/nosepride/fields.py", line 373, in validate

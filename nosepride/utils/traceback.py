@@ -42,7 +42,7 @@ class Traceback(object):
 
     @staticmethod
     def intersect(path):
-        if commonprefix([getcwd(), path]) != "/":
+        if path.startswith(getcwd()):
             return relpath(path, commonprefix([getcwd(), path]))
         else:
             return path
