@@ -9,13 +9,16 @@ class PluginBase(PluginShim):
 
     score = 199
     name = 'nosepride'
-    stream = None
-    result = None
     enabled = True
-    running_test = False
-    failure_report = None
-    failed_expectations = []
-    expectation_iterator = None
+
+    def __init__(self):
+        super(PluginBase, self).__init__()
+        self.stream = None
+        self.result = None
+        self.failure_report = None
+        self.expectation_iterator = None
+        self.running_test = False
+        self.failed_expectations = []
 
     def options(self, parser, env):
         parser.add_option(
