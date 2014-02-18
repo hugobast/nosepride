@@ -50,15 +50,12 @@ class PluginBase(PluginShim):
         try:
             return self.expectation_iterator.next()
         except StopIteration:
-            return None
+            return ""
 
-
-    def formatError(self, test, err):
-        self.failed_expectations.append(unicode(err[1]))
-        return err
-
-    def formatFailure(self, test, err):
-        self.formatError(test, err)
+    def record_error(self, test, err):
+        self.failed_expectations.append("{0}: {1}".format(
+            err[0].__name__, unicode(err[1])
+        ))
 
     def begin(self):
         self.running_test = False
@@ -83,9 +80,11 @@ class PluginBase(PluginShim):
 
     def add_failure(self, test, err):
         self.output(self.pride("!"))
+        self.record_error(test, err)
 
     def add_error(self, test, err):
         self.output(self.pride("x"))
+        self.record_error(test, err)
 
     def add_success(self, test):
         self.output(self.pride("."))

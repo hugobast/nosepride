@@ -1,4 +1,6 @@
+from mock import Mock
 from unittest import TestCase
+from unittest.test.test_case import Test
 from nosepride.formatters.plain import Plain
 from nosepride.formatters.fabulous import Fabulous
 
@@ -23,3 +25,10 @@ class TestNosepride(TestCase):
         self.assertEquals("\x1b[38;5;154m.\x1b[0m", color.pride("."))
         self.assertEquals("\x1b[38;5;154m.\x1b[0m", color.pride("."))
         self.assertEquals("\x1b[38;5;148m.\x1b[0m", color.pride("."))
+
+    def test_raised_errors_without_message_gets_a_default_one(self):
+        plugin = Fabulous()
+        error = (ValueError, "", Mock(name="traceback"))
+        plugin.record_error(Mock(Test), error)
+
+        self.assertIn("ValueError: ", plugin.failed_expectations)
