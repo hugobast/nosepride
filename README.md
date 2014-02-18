@@ -19,7 +19,14 @@ Nothing! Nosepride is on by default! But if you mush turn it off...
 
 ### Changelog
 
-Version 0.0.4: Better failure formatting
+#### Version 0.0.6
+
+Filtering out all path from traceback not directly on project path
+Empty error message caused report to have nothing but a blank line, it now prints the error class name
+
+#### Version 0.0.4
+
+Better failure formatting
 
 ### License
 
