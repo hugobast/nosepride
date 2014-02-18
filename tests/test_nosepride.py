@@ -1,6 +1,5 @@
 from mock import Mock
 from unittest import TestCase
-from unittest.test.test_case import Test
 from nosepride.formatters.plain import Plain
 from nosepride.formatters.fabulous import Fabulous
 
@@ -29,6 +28,6 @@ class TestNosepride(TestCase):
     def test_raised_errors_without_message_gets_a_default_one(self):
         plugin = Fabulous()
         error = (ValueError, "", Mock(name="traceback"))
-        plugin.record_error(Mock(Test), error)
+        plugin.record_error(Mock(name="Test"), error)
 
         self.assertIn("ValueError: ", plugin.failed_expectations)
