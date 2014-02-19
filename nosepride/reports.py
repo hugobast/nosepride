@@ -12,25 +12,39 @@ class FailureReport(object):
 
     def print_error_header(self, index, test):
         self.formatter.output("  {0}) {1}".format(
-            unicode(index + 1),
-            unicode(test)
+            unicode(index + 1), unicode(test)
         ))
 
     def print_blank_lines(self, count):
         [self.formatter.output("\n") for _ in range(count)]
 
-    def print_traceback(self, error):
-        traceback = Traceback(error).report()
+    def next_failure_message(self):
+        return self.formatter.get_next_failed_expectation()
 
-        for line in self.formatter.get_next_failed_expectation().splitlines():
+    def print_failure_message(self):
+        for line in self.next_failure_message().splitlines():
             self.formatter.output("     {0}\n".format(
                 self.formatter.failure(line)
             ))
 
-        for line in traceback:
+    def print_traceback(self, error):
+        for line in Traceback(error).report():
             self.formatter.output("     {0}\n".format(
                 self.formatter.stack(line)
             ))
+
+    def print_failure(self, error):
+        self.print_failure_message()
+        self.print_traceback(error)
+
+    def print_error(self, error, index, test):
+        self.print_error_header(index, test)
+        self.print_blank_lines(2)
+        self.print_failure(error)
+        self.print_blank_lines(1)
+
+    def callback_plugins_report(self):
+        self.result.config.plugins.report(self.result.stream)
 
     def print_errors(self):
         self.print_blank_lines(2)
@@ -40,22 +54,22 @@ class FailureReport(object):
             self.formatter.output("Failures:")
             self.print_blank_lines(2)
             for index, (test, error) in enumerate(errors):
-                self.print_error_header(index, test)
-                self.print_blank_lines(2)
-                self.print_traceback(error)
-                self.print_blank_lines(1)
+                self.print_error(error, index, test)
 
-        self.result.config.plugins.report(self.result.stream)
+        self.callback_plugins_report()
 
-    def print_summary(self, start, stop):
-        finale = "Ran %s fabulous tests in %.4f seconds" % (
-            self.result.testsRun,
-            stop - start
-        )
-
+    def print_colored_finale(self, finale):
         colored_finale = []
         for char in finale:
             colored_finale.append(self.formatter.pride(char))
+        return colored_finale
+
+    def print_summary(self, start, stop):
+        finale = "Ran %s fabulous tests in %.4f seconds" % (
+            self.result.testsRun, stop - start
+        )
+
+        colored_finale = self.print_colored_finale(finale)
 
         self.formatter.output("".join(colored_finale))
         self.print_blank_lines(2)
