@@ -5,7 +5,7 @@ from nose.plugins.xunit import Xunit
 from nosepride import Nosepride
 
 
-class TestIntegration(PluginTester, TestCase):
+class TestPluginIntegration(PluginTester, TestCase):
     activate = ""
     args = [
         '--with-xunit',
@@ -32,5 +32,23 @@ class TestIntegration(PluginTester, TestCase):
 
             def runTest(self):
                 self.assertTrue(True)
+
+        return TestSuite([InternalTests()])
+
+
+class TestShortDescription(PluginTester, TestCase):
+    activate = ""
+    plugins = [Nosepride()]
+
+    def test_displays_test_docstring_when_present(self):
+        self.assertTrue("Docstring" in self.output)
+
+    def makeSuite(self):
+
+        class InternalTests(TestCase):
+
+            def runTest(self):
+                """Docstring"""
+                self.assertTrue(False)
 
         return TestSuite([InternalTests()])
