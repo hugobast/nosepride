@@ -30,7 +30,7 @@ class TestPluginBase(TestCase):
             "--fabulous-off",
             action="store_false",
             default=True,
-            dest="disabled",
+            dest="fabulous",
             help="disable colour output"
         )
 

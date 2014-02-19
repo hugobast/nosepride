@@ -25,7 +25,7 @@ class PluginBase(PluginShim):
             "--fabulous-off",
             action="store_false",
             default=True,
-            dest="disabled",
+            dest="fabulous",
             help="disable colour output"
         )
 
@@ -68,7 +68,7 @@ class PluginBase(PluginShim):
             self.add_skip()
 
     def configure(self, options, conf):
-        if not options.disabled:
+        if not options.fabulous:
             self.enabled = False
 
     def prepare_test_result(self, result):
