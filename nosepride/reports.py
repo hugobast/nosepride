@@ -32,21 +32,20 @@ class FailureReport(object):
                 self.formatter.stack(line)
             ))
 
-
     def print_errors(self):
         self.print_blank_lines(2)
         errors = self.result.errors + self.result.failures
 
-        if not errors:
-            return None
-
-        self.formatter.output("Failures:")
-        self.print_blank_lines(2)
-        for index, (test, error) in enumerate(errors):
-            self.print_error_header(index, test)
+        if errors:
+            self.formatter.output("Failures:")
             self.print_blank_lines(2)
-            self.print_traceback(error)
-            self.print_blank_lines(1)
+            for index, (test, error) in enumerate(errors):
+                self.print_error_header(index, test)
+                self.print_blank_lines(2)
+                self.print_traceback(error)
+                self.print_blank_lines(1)
+
+        self.result.config.plugins.report(self.result.stream)
 
     def print_summary(self, start, stop):
         finale = "Ran %s fabulous tests in %.4f seconds" % (
