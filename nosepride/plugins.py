@@ -74,6 +74,7 @@ class PluginBase(PluginShim):
     def prepare_test_result(self, result):
         result.stream = NullStream(result.stream)
         self.failure_report = FailureReport(self, result)
+        return result
 
     def set_output_stream(self, stream):
         self.stream = stream
