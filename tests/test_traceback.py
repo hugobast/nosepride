@@ -22,9 +22,9 @@ FULL_TRACEBACK = """Traceback (most recent call last):
     super().do_stuff(value)
   File "/home/username/.virtualenv/package/base/something.py", line 32, in do_stuff
     self.do_stuff(value)
-  File "/home/username/project/nosepride/base/fields.py", line 174, in _validate
+  File "nosepride/base/fields.py", line 174, in _validate
     self.validate(value, **kwargs)
-  File "/home/username/project/nosepride/fields.py", line 373, in validate
+  File "nosepride/fields.py", line 373, in validate
     new_value = self.to_mongo(value)
   File "/home/username/project/nosepride/fields.py", line 393, in to_mongo
     return dateutil.parser.parse(value)

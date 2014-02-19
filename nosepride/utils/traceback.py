@@ -1,6 +1,6 @@
 from re import match
 from os import getcwd
-from os.path import commonprefix, relpath
+from os.path import commonprefix, relpath, dirname, split
 
 
 class Traceback(object):
@@ -42,8 +42,11 @@ class Traceback(object):
 
     @staticmethod
     def intersect(path):
+        _, directory_name = split(getcwd())
         if path.startswith(getcwd()):
             return relpath(path, commonprefix([getcwd(), path]))
+        elif path.startswith(directory_name):
+            return relpath(path, commonprefix([directory_name, path]))
         else:
             return path
 
