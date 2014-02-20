@@ -1,11 +1,13 @@
 ### Nosepride
 [![Build Status](https://travis-ci.org/hugobast/nosepride.png?branch=master)](https://travis-ci.org/hugobast/nosepride)
 
-Pretty much a copy of minitest/pride.
+The colors are stolen from the minitest/pride plugin for minitest.
+This plugin also formats traceback and error reports with less visual noise,
+this was heavily inspired by rspec's report output.
 
 ### Screenshot
 
-![Example console output](https://s3.amazonaws.com/hbastien/nosepride2.png)
+![Example console output](https://s3.amazonaws.com/hbastien/nosepride0.1.0.png)
 
 ### Installation
 
@@ -18,6 +20,12 @@ Nothing! Nosepride is on by default! But if you mush turn it off...
     nosetests --fabulous-off
 
 ### Changelog
+
+#### Version 0.1.0
+
+Plays better with other plugins (the tricky part is to avoid nosetests regular output to leak out)
+Show docstring of test when one is available
+Fixed bug in traceback printing (was filtering out relative file outputs when we actually want those)
 
 #### Version 0.0.6
 
