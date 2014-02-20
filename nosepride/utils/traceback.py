@@ -42,9 +42,9 @@ class Traceback(object):
 
     @staticmethod
     def intersect(path):
-        project_path, directory_name = split(getcwd())
-        if path.startswith(project_path):
-            return relpath(path, commonprefix([project_path, path]))
+        _, directory_name = split(getcwd())
+        if path.startswith(getcwd()):
+            return relpath(path, commonprefix([getcwd(), path]))
         elif path.startswith(directory_name):
             return path
         else:

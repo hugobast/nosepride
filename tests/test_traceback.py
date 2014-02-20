@@ -16,7 +16,7 @@ EXAMPLE_TRACEBACK = "".join(LINES)
 FULL_TRACEBACK = """Traceback (most recent call last):
   File "/home/username/project/nosepride/tests/fields/fields.py", line 546, in test_datetime_validation
     self.assertRaises(ValidationError, log.validate)
-  File "/home/username/project/nosepride/base/document.py", line 307, in validate
+  File "/home/username/project/nosepride/nosepride/base/document.py", line 307, in validate
     field._validate(value)
   File "/home/username/.virtualenv/package/derivatives/something.py", line 22, in do_stuff
     super().do_stuff(value)
@@ -26,7 +26,7 @@ FULL_TRACEBACK = """Traceback (most recent call last):
     self.validate(value, **kwargs)
   File "nosepride/fields.py", line 373, in validate
     new_value = self.to_mongo(value)
-  File "/home/username/project/nosepride/fields.py", line 393, in to_mongo
+  File "/home/username/project/nosepride/nosepride/fields.py", line 393, in to_mongo
     return dateutil.parser.parse(value)
 TypeError: 'NoneType' object is not iterable"""
 
@@ -43,7 +43,7 @@ class TestTraceback(TestCase):
         traceback.format_line()
 
         self.assertEqual(
-            '# nosepride/tests/test_nosepride.py:12:in '
+            '# tests/test_nosepride.py:12:in '
             'test_wraps_string_in_terminal_escaped_color_syntax',
             traceback.formatted_lines[0]
         )
@@ -52,7 +52,7 @@ class TestTraceback(TestCase):
     def test_return_a_full_report(self, getcwd):
         getcwd.return_value = "/home/username/project/nosepride"
         expected = [
-            '# nosepride/tests/fields/fields.py:546:in test_datetime_validation',
+            '# tests/fields/fields.py:546:in test_datetime_validation',
             '# nosepride/base/document.py:307:in validate',
             '# nosepride/base/fields.py:174:in _validate',
             '# nosepride/fields.py:373:in validate',
