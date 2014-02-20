@@ -43,7 +43,7 @@ class TestTraceback(TestCase):
         traceback.format_line()
 
         self.assertEqual(
-            '# tests/test_nosepride.py:12:in '
+            '# nosepride/tests/test_nosepride.py:12:in '
             'test_wraps_string_in_terminal_escaped_color_syntax',
             traceback.formatted_lines[0]
         )
@@ -52,11 +52,11 @@ class TestTraceback(TestCase):
     def test_return_a_full_report(self, getcwd):
         getcwd.return_value = "/home/username/project/nosepride"
         expected = [
-            '# tests/fields/fields.py:546:in test_datetime_validation',
-            '# base/document.py:307:in validate',
-            '# base/fields.py:174:in _validate',
-            '# fields.py:373:in validate',
-            '# fields.py:393:in to_mongo'
+            '# nosepride/tests/fields/fields.py:546:in test_datetime_validation',
+            '# nosepride/base/document.py:307:in validate',
+            '# nosepride/base/fields.py:174:in _validate',
+            '# nosepride/fields.py:373:in validate',
+            '# nosepride/fields.py:393:in to_mongo'
         ]
 
         traceback = Traceback(FULL_TRACEBACK)

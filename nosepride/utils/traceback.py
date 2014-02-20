@@ -27,10 +27,10 @@ class Traceback(object):
 
         if matches:
             path, no, method = matches.groups()
-            project_path = self.intersect(path)
-            if not project_path is path:
+            relative_path = self.intersect(path)
+            if relative_path:
                 self.formatted_lines.append(
-                    "# {0}:{1}:in {2}".format(project_path, no, method
+                    "# {0}:{1}:in {2}".format(relative_path, no, method
                 ))
 
     def report(self):
@@ -42,13 +42,13 @@ class Traceback(object):
 
     @staticmethod
     def intersect(path):
-        _, directory_name = split(getcwd())
-        if path.startswith(getcwd()):
-            return relpath(path, commonprefix([getcwd(), path]))
+        project_path, directory_name = split(getcwd())
+        if path.startswith(project_path):
+            return relpath(path, commonprefix([project_path, path]))
         elif path.startswith(directory_name):
-            return relpath(path, commonprefix([directory_name, path]))
-        else:
             return path
+        else:
+            return None
 
     @property
     def source_file_matcher(self):
