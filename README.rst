@@ -33,6 +33,11 @@ Nothing! Nosepride is on by default! But if you mush turn it off...
 Changelog
 ~~~~~~~~~
 
+Version 0.1.5
+^^^^^^^^^^^^^
+
+Python 3.3 support!
+
 Version 0.1.0
 ^^^^^^^^^^^^^
 
