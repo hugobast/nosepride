@@ -2,7 +2,7 @@ from os import path, unlink
 from unittest import TestCase, TestSuite
 from nose.plugins import PluginTester
 from nose.plugins.xunit import Xunit
-from nosepride import Nosepride
+from nosepride.nosepride import Nosepride
 
 
 class TestPluginIntegration(PluginTester, TestCase):

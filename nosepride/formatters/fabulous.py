@@ -15,7 +15,7 @@ class Fabulous(Plain):
 
     def pride(self, string):
         return "{0}38;5;{1}m{2}{3}".format(
-            self.escseq, self.colors.next(), string, self.endseq
+            self.escseq, next(self.colors), string, self.endseq
         )
 
     def generate_colors(self):

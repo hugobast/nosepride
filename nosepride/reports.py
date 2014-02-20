@@ -12,7 +12,7 @@ class FailureReport(object):
 
     def print_error_header(self, index, test):
         self.formatter.output("  {0}) {1}".format(
-            unicode(index + 1), test.shortDescription() or unicode(test)
+            str(index + 1), test.shortDescription() or str(test)
         ))
 
     def print_blank_lines(self, count):

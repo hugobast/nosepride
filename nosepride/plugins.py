@@ -48,13 +48,13 @@ class PluginBase(PluginShim):
         if not self.expectation_iterator:
             self.expectation_iterator = iter(self.failed_expectations)
         try:
-            return self.expectation_iterator.next()
+            return next(self.expectation_iterator)
         except StopIteration:
             return ""
 
     def record_error(self, test, err):
         self.failed_expectations.append("{0}: {1}".format(
-            err[0].__name__, unicode(err[1])
+            err[0].__name__, str(err[1])
         ))
 
     def begin(self):

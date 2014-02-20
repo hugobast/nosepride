@@ -1,7 +1,5 @@
-from os.path import relpath, commonprefix
 from mock import patch
 from unittest import TestCase
-from re import match
 from nosepride.utils.traceback import Traceback
 
 LINES = [

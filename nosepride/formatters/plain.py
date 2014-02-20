@@ -10,7 +10,7 @@ class Plain(PluginBase):
 
     def pride(self, string):
         return "{0}{1}m{2}{3}".format(
-            self.escseq, self.colors.next(), string, self.endseq
+            self.escseq, next(self.colors), string, self.endseq
         )
 
     def failure(self, string):

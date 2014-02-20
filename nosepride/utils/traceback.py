@@ -15,14 +15,14 @@ class Traceback(object):
         self.skip_first_line()
 
     def skip_first_line(self):
-        self.error_lines.next()
+        next(self.error_lines)
 
     def skip_a_line(self):
-        self.error_lines.next()
+        next(self.error_lines)
 
     def format_line(self):
         matches = match(
-            self.source_file_matcher, unicode(self.error_lines.next())
+            self.source_file_matcher, str(next(self.error_lines))
         )
 
         if matches:
