@@ -14,6 +14,7 @@ Screenshot
    :alt: Example console output
 
    Example console output
+
 Installation
 ~~~~~~~~~~~~
 
