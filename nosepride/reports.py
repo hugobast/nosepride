@@ -4,8 +4,7 @@ from .utils.traceback import Traceback
 class FailureReport(object):
 
     def __init__(self, formatter, result):
-        result.printErrors = self.print_errors
-        result.printSummary = self.print_summary
+        self._monkey_patch_result(result)
 
         self.formatter = formatter
         self.result = result
@@ -65,6 +64,7 @@ class FailureReport(object):
         return colored_finale
 
     def print_summary(self, start, stop):
+        self.print_blank_lines(1)
         finale = "Ran %s fabulous tests in %.4f seconds" % (
             self.result.testsRun, stop - start
         )
@@ -73,3 +73,10 @@ class FailureReport(object):
 
         self.formatter.output("".join(colored_finale))
         self.print_blank_lines(2)
+
+    def _monkey_patch_result(self, result):
+        result.printErrors = self.print_errors
+        result.printSummary = self.print_summary
+        result.dots = False
+        # result.addSuccess = lambda test: None
+        # result.printLabel = lambda label: None

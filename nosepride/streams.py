@@ -8,7 +8,7 @@ class NullStream(object):
         return getattr(self.stream, name)
 
     def write(self, *args):
-        return
+        return self.stream.write(*args)
 
     def writeln(self, *args):
         return self.stream.writeln(*args)

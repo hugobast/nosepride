@@ -1,5 +1,6 @@
 TODO.txt
 .idea
+.coverage
 nosepride.egg-info
 dist
 build

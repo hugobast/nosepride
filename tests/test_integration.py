@@ -1,6 +1,7 @@
 from os import path, unlink
 from unittest import TestCase, TestSuite
 from nose.plugins import PluginTester
+from nose.plugins.cover import Coverage
 from nose.plugins.xunit import Xunit
 from nosepride.nosepride import Nosepride
 
@@ -9,10 +10,12 @@ class TestPluginIntegration(PluginTester, TestCase):
     activate = ""
     args = [
         '--with-xunit',
-        '--xunit-file=xunit_test.xml'
+        '--xunit-file=xunit_test.xml',
+        '--with-coverage',
+        '--cover-package=nosepride'
     ]
 
-    plugins = [Xunit(), Nosepride()]
+    plugins = [Xunit(), Nosepride(), Coverage()]
 
     def tearDown(self):
         unlink(self.file)
@@ -25,6 +28,8 @@ class TestPluginIntegration(PluginTester, TestCase):
             self.assertRegexpMatches(
                 report.read(), r'<\?xml version="1.0" encoding="UTF-8"\?>'
             )
+
+        self.assertTrue("TOTAL" in self.output)
 
     def makeSuite(self):
 
