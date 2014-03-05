@@ -1,9 +1,13 @@
 from re import findall
 from os import environ
-from .formatters.fabulous import Fabulous
+from .plugins import PluginBase
 from .formatters.plain import Plain
+from .formatters.fabulous import Fabulous
 
 
-Nosepride = Plain
+formatter = Plain()
 if findall(r'^xterm|-256color$', environ.get("TERM")):
-    Nosepride = Fabulous
+    formatter = Fabulous()
+
+PluginBase.formatter = formatter
+Nosepride = PluginBase

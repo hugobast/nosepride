@@ -10,6 +10,7 @@ class PluginBase(PluginShim):
     score = 199
     name = 'nosepride'
     enabled = True
+    formatter = None
 
     def __init__(self):
         super(PluginBase, self).__init__()
@@ -27,21 +28,6 @@ class PluginBase(PluginShim):
             default=True,
             dest="fabulous",
             help="disable colour output"
-        )
-
-    def failure(self, string):
-        raise NotImplementedError(
-            "Please provide implementation for failure"
-        )
-
-    def pride(self, string):
-        raise NotImplementedError(
-            "Please provide implementation for pride"
-        )
-
-    def stack(self, string):
-        raise NotImplementedError(
-            "Please provide implementation for pride"
         )
 
     def get_next_failed_expectation(self):
@@ -96,3 +82,12 @@ class PluginBase(PluginShim):
     def output(self, string):
         self.stream.write(string)
         self.running_test = False
+
+    def pride(self, string):
+        return self.formatter.pride(string)
+
+    def failure(self, string):
+        return self.formatter.failure(string)
+
+    def stack(self, string):
+        return self.formatter.stack(string)

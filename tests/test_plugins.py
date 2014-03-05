@@ -15,14 +15,6 @@ class TestPluginBase(TestCase):
     def test_nothing(self):
         self.assertTrue(self.plugin)
 
-    def test_raises_not_implemented_for_failure_method(self):
-        with self.assertRaises(NotImplementedError):
-            self.plugin.failure("message")
-
-    def test_raises_not_implemented_for_pride_method(self):
-        with self.assertRaises(NotImplementedError):
-            self.plugin.failure("message")
-
     def test_sets_options_for_turning_nosepride_off(self):
         parser = Mock()
         self.plugin.options(parser, None)
