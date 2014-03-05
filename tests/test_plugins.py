@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from mock import Mock
 
-from nosepride.plugins import PluginBase
+from nosepride.plugins import Nosepride
 from nosepride.utils.lazy import lazy_property
 
 
@@ -10,7 +10,7 @@ class TestPluginBase(TestCase):
 
     @lazy_property
     def plugin(self):
-        return PluginBase()
+        return Nosepride()
 
     def test_nothing(self):
         self.assertTrue(self.plugin)
@@ -29,7 +29,6 @@ class TestPluginBase(TestCase):
     def test_begin_sets_running_test_to_false(self):
         self.plugin.begin()
         self.assertFalse(self.plugin.running_test)
-
 
     def test_before_test_sets_running_test_to_true(self):
         self.plugin.before_test(Mock(name="A test case"))

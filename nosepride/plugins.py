@@ -5,7 +5,7 @@ from .reports import FailureReport
 
 # Plugin interface methods
 # https://nose.readthedocs.org/en/latest/plugins/interface.html
-class PluginBase(PluginShim):
+class Nosepride(PluginShim):
 
     score = 199
     name = 'nosepride'
@@ -13,7 +13,7 @@ class PluginBase(PluginShim):
     formatter = None
 
     def __init__(self):
-        super(PluginBase, self).__init__()
+        super(Nosepride, self).__init__()
         self.stream = None
         self.result = None
         self.failure_report = None
