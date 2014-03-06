@@ -14,7 +14,7 @@ setup(
     author="Hugo Bastien",
     author_email="hugobast@gmail.com",
     url="https://github.com/hugobast/nosepride.git",
-    version="0.1.6",
+    version="0.1.7",
     packages=find_packages(exclude=["tests"]),
     tests_require=["mock", "coverage"],
     install_requires=[
